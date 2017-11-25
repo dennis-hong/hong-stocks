@@ -18,7 +18,7 @@ const mapDispatchToProps = {
 }
 
 const mapStateToProps = (state) => ({
-  counter : state.counter.get('counter'),
+  counter : state.counter.get('counter')['A000020'],
   isFetching : state.counter.get('isFetching')
 })
 

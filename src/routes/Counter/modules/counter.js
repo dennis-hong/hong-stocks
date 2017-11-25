@@ -38,7 +38,6 @@ const ACTION_HANDLERS = {
   [COUNTER_INCREMENT] : (state, action) => state.set('counter', action.payload + '1'),
   [GET_VALUE + PENDING]: (state, action) => state.set('isFetching', true),
   [GET_VALUE + FULFILLED]: (state, action) => {
-    sleep(5000)
     return state.set('isFetching', false)
       .set('counter', action.payload)
   },
@@ -50,18 +49,9 @@ const ACTION_HANDLERS = {
 // ------------------------------------
 // Reducer
 // ------------------------------------
-const initialState = Map({ isFetching: false, counter: 'init' })
+const initialState = Map({ isFetching: false, counter: '' })
 export default function counterReducer (state = initialState, action) {
   const handler = ACTION_HANDLERS[action.type]
 
   return handler ? handler(state, action) : state
-}
-
-function sleep(milliseconds) {
-  let start = new Date().getTime();
-  for (let i = 0; i < 1e7; i++) {
-    if ((new Date().getTime() - start) > milliseconds){
-      break;
-    }
-  }
 }
